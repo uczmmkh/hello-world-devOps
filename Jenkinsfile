@@ -18,6 +18,12 @@ pipeline {
 	   junit 'target/surefire-reports/*.xml' 
 	  }		 
 	 }	 
-  }		
+  }
+  stage('Deploy'){
+	  steps {
+	   bat 'mvn tomcat7:undeploy'
+	   bat 'mvn tomcat7:deploy'
+	  }
+	}  
  }
 }
