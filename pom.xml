@@ -52,7 +52,25 @@
 		<version>1.9.5</version>
 		<scope>test</scope>
 	</dependency>
-  </dependencies>
+
+    <dependency>
+        <groupId>ucl.isd</groupId>
+        <artifactId>ISDUtils</artifactId>
+        <version>1.0.1</version>
+    </dependency>
+
+
+	</dependencies>
+  
+  
+  <repositories>
+    <repository>
+        <id>local</id>
+        <url>file://${project.basedir}/libs</url>
+    </repository>
+</repositories>
+
+
     
   <build>   
   <plugins>
