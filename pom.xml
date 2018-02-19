@@ -70,17 +70,92 @@
     </repository>
 </repositories>
 
-
+ <!-- Profiles configuration -->
+    <profiles>
+          <!-- The configuration of the development profile -->
+        <profile>
+            <id>local</id>
+            <!-- The development profile is active by default -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--
+                    Specifies the build.profile.id property that must be equal than the name of
+                    the directory that contains the profile specific configuration file.
+                    Because the name of the directory that contains the configuration file of the
+                    development profile is dev, we must set the value of the build.profile.id property to dev.
+                -->
+                <build.profile.id>local</build.profile.id>
+				<build.profile.tomcat.url>http://localhost:8080/manager/text</build.profile.tomcat.url>
+				<build.profile.tomcat.username>jenkins</build.profile.tomcat.username>
+				<build.profile.tomcat.password>admin</build.profile.tomcat.password>
+            </properties>
+        </profile>
+        
+        <!-- The configuration of the development profile -->
+        <profile>
+            <id>dev</id>            
+            <properties>
+                <!--
+                    Specifies the build.profile.id property that must be equal than the name of
+                    the directory that contains the profile specific configuration file.
+                    Because the name of the directory that contains the configuration file of the
+                    development profile is dev, we must set the value of the build.profile.id property to dev.
+                -->
+                <build.profile.id>dev</build.profile.id>
+				<build.profile.tomcat.url>http://localhost:8080/manager/text</build.profile.tomcat.url>
+				<build.profile.tomcat.username>jenkins</build.profile.tomcat.username>
+				<build.profile.tomcat.password>admin</build.profile.tomcat.password>
+            </properties>
+        </profile>
+        <!-- The configuration of the production profile -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!--
+                    Specifies the build.profile.id property that must be equal than the name of
+                    the directory that contains the profile specific configuration file.
+                    Because the name of the directory that contains the configuration file of the
+                    production profile is prod, we must set the value of the build.profile.id property to prod.
+                -->
+                <build.profile.id>prod</build.profile.id>
+				<build.profile.tomcat.url>http://localhost:8080/manager/text</build.profile.tomcat.url>
+				<build.profile.tomcat.username>jenkins</build.profile.tomcat.username>
+				<build.profile.tomcat.password>admin</build.profile.tomcat.password>
+            </properties>
+        </profile>
+        <!-- The configuration of the testing profile -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <!--
+                    Specifies the build.profile.id property that must be equal than the name of
+                    the directory that contains the profile specific configuration file.
+                    Because the name of the directory that contains the configuration file of the
+                    testing profile is test, we must set the value of the build.profile.id property to test.
+                -->
+                <build.profile.id>test</build.profile.id>				
+				<build.profile.tomcat.url>http://localhost:8080/manager/text</build.profile.tomcat.url>
+				<build.profile.tomcat.username>jenkins</build.profile.tomcat.username>
+				<build.profile.tomcat.password>admin</build.profile.tomcat.password>
+            </properties>
+        </profile>
+    </profiles>  
     
   <build>   
+  
+  
   <plugins>
    <plugin>
 	<groupId>org.apache.tomcat.maven</groupId>
 	<artifactId>tomcat7-maven-plugin</artifactId>
 	<version>2.2</version>
 	<configuration>
-		<url>http://localhost:8080/manager/text</url>
+		<url>${build.profile.tomcat.url}</url>		
 		<server>TomcatServer</server>
+		<username>${build.profile.tomcat.username}</username>
+		<password>${build.profile.tomcat.password}</password>
 		<path>/helloWorldDevOps</path>
 	</configuration>
 	</plugin>
